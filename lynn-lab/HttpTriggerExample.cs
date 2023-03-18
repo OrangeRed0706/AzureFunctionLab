@@ -4,15 +4,15 @@ using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
 
-namespace Company.FunctionApp1;
+namespace lynn_lab;
 
-public static class HttpTrigger
+public static class HttpTriggerExample
 {
-    [Function("HttpTrigger")]
+    [Function("HttpTriggerExample")]
     public static HttpResponseData Run([HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequestData req,
         FunctionContext executionContext)
     {
-        var logger = executionContext.GetLogger("HttpTrigger");
+        var logger = executionContext.GetLogger("HttpTriggerExample");
         logger.LogInformation("C# HTTP trigger function processed a request.");
 
         var response = req.CreateResponse(HttpStatusCode.OK);
@@ -21,6 +21,5 @@ public static class HttpTrigger
         response.WriteString("Welcome to Azure Functions!");
 
         return response;
-        
     }
 }

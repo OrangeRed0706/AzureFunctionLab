@@ -1,8 +1,8 @@
 {
   "profiles": {
-    "Company.FunctionApp1": {
+    "lynn_lab": {
       "commandName": "Project",
-      "commandLineArgs": "--port 7259",
+      "commandLineArgs": "--port 7294",
       "launchBrowser": false
     }
   }

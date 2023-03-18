@@ -2,14 +2,14 @@
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 
-namespace Company.FunctionApp1;
+namespace lynn_lab;
 
-public static class TimeTriggerTest
+public static class TimerTriggerExample
 {
-    [Function("TimeTriggerTest")]
+    [Function("TimerTriggerExample")]
     public static void Run([TimerTrigger("0 */5 * * * *")] MyInfo myTimer, FunctionContext context)
     {
-        var logger = context.GetLogger("TimeTriggerTest");
+        var logger = context.GetLogger("TimerTriggerExample");
         logger.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
         logger.LogInformation($"Next timer schedule at: {myTimer.ScheduleStatus.Next}");
         
