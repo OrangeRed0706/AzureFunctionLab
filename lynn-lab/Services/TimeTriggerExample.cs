@@ -29,7 +29,11 @@ public class TimeTriggerExample
             WriteIndented = true
         };
         logger.LogInformation("MyInfo: {Serialize}", JsonSerializer.Serialize(myTimer, option));
-        logger.LogInformation("Function Context: {Serialize}", JsonSerializer.Serialize(context));
+        if (context != null)
+        {
+            logger.LogInformation("Function Context: {Serialize}", JsonSerializer.Serialize(context));
+        }
+
         logger.LogInformation("C# Timer trigger function executed at: {LocalTime})", localTime);
         logger.LogInformation("Next timer schedule at: {LocalTime}", ToTaipeiTime(myTimer.ScheduleStatus.Next));
     }
