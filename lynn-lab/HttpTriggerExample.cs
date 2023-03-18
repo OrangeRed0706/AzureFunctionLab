@@ -9,7 +9,9 @@ namespace lynn_lab;
 public static class HttpTriggerExample
 {
     [Function("HttpTriggerExample")]
-    public static HttpResponseData Run([HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequestData req,
+    public static HttpResponseData Run(
+        [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = "api/HttpTriggerExample")]
+        HttpRequestData req,
         FunctionContext executionContext)
     {
         var logger = executionContext.GetLogger("HttpTriggerExample");
