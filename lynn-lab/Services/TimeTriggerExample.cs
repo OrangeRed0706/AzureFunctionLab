@@ -1,5 +1,6 @@
 ﻿using System.Text.Json;
 using lynn_lab.Helper;
+using lynn_lab.Model;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 
@@ -24,26 +25,9 @@ public class TimeTriggerExample
         {
             WriteIndented = true
         };
-        logger.LogInformation("MyInfo: {MyInfo}", JsonSerializer.Serialize(myTimer, option));
-        logger.LogInformation("Function Context: {Context}", JsonSerializer.Serialize(context));
-        logger.LogInformation("C# Timer trigger function executed at: {Now}", DateTime.Now.ToLocalTime());
-        logger.LogInformation("Next timer schedule at: {ScheduleStatusNext}",
-            myTimer.ScheduleStatus.Next.ToLocalTime());
+        logger.LogInformation($"MyInfo: {JsonSerializer.Serialize(myTimer, option)}");
+        logger.LogInformation($"Function Context: {JsonSerializer.Serialize(context)}");
+        logger.LogInformation($"C# Timer trigger function executed at: {DateTime.Now.ToLocalTime()})");
+        logger.LogInformation($"Next timer schedule at: {myTimer.ScheduleStatus.Next.ToLocalTime()}");
     }
-}
-
-public class MyInfo
-{
-    public MyScheduleStatus ScheduleStatus { get; set; }
-
-    public bool IsPastDue { get; set; }
-}
-
-public abstract class MyScheduleStatus
-{
-    public DateTime Last { get; set; }
-
-    public DateTime Next { get; set; }
-
-    public DateTime LastUpdated { get; set; }
 }
