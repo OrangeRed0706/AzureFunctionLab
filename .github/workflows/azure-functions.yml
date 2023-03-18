@@ -37,6 +37,6 @@ jobs:
         id: fa
         with:
           app-name: 'lynnexample'
-          slot-name: 'production'
+          slot-name: 'Production'
           package: '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/output'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_1234 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_AD88D1EC16AA4A80917A670D3E6522D4 }}
