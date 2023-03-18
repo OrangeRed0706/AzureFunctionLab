@@ -23,7 +23,7 @@ public class TimeTriggerExample
         var logger = context.GetLogger("TimeTriggerExample1");
 
         await _lineHelper.SendLineNotify(
-            $"C# Timer trigger function executed at: {localTime},\n Next timer schedule at: {ToTaipeiTime(myTimer.ScheduleStatus.Next)}");
+            $"\n C# Timer trigger function executed at: {localTime},\n Next timer schedule at: {ToTaipeiTime(myTimer.ScheduleStatus.Next)}");
         var option = new JsonSerializerOptions()
         {
             WriteIndented = true
