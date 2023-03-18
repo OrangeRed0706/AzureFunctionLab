@@ -6,16 +6,16 @@ using Microsoft.Extensions.Logging;
 
 namespace lynn_lab.Services;
 
-public class TimeTriggerExample1
+public class TimeTriggerExample
 {
     private readonly LineHelper _lineHelper;
 
-    public TimeTriggerExample1(LineHelper lineHelper)
+    public TimeTriggerExample(LineHelper lineHelper)
     {
         _lineHelper = lineHelper;
     }
 
-    [Function("TimeTriggerExample1")]
+    [Function("TimeTriggerExample")]
     public async Task Run([TimerTrigger("0 */1 * * * *")] MyInfo myTimer, FunctionContext context)
     {
         var logger = context.GetLogger("TimeTriggerExample1");
@@ -25,10 +25,10 @@ public class TimeTriggerExample1
         {
             WriteIndented = true
         };
-        logger.LogInformation($"MyInfo: {JsonSerializer.Serialize(myTimer, option)}");
-        logger.LogInformation($"Function Context: {JsonSerializer.Serialize(context)}");
-        logger.LogInformation($"C# Timer trigger function executed at: {DateTime.Now.ToLocalTime()})");
-        logger.LogInformation($"Next timer schedule at: {myTimer.ScheduleStatus.Next.ToLocalTime()}");
+        logger.LogInformation("MyInfo: {Serialize}", JsonSerializer.Serialize(myTimer, option));
+        logger.LogInformation("Function Context: {Serialize}", JsonSerializer.Serialize(context));
+        logger.LogInformation("C# Timer trigger function executed at: {LocalTime})", DateTime.Now.ToLocalTime());
+        logger.LogInformation("Next timer schedule at: {LocalTime}", myTimer.ScheduleStatus.Next.ToLocalTime());
     }
 }
 
