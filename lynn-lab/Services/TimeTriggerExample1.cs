@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 
 namespace lynn_lab;
 
-public static class TimeTriggerExample1
+public class TimeTriggerExample1
 {
     private readonly LineHelper _lineHelper;
 
