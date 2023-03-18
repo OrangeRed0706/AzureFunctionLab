@@ -20,7 +20,7 @@ public sealed class TimerTriggerExample
         var logger = context.GetLogger("HttpTriggerExample");
 
         await _lineHelper.SendLineNotify(
-            $"C# Timer trigger function executed at: {DateTime.Now},Next timer schedule at: {myTimer.ScheduleStatus.Next}");
+            $"C# Timer trigger function executed at: {DateTime.Now},Next timer schedule at: {myTimer.ScheduleStatus.Next.ToString()}");
         logger.LogInformation("C# Timer trigger function executed at: {Now}", DateTime.Now);
         logger.LogInformation("Next timer schedule at: {ScheduleStatusNext}", myTimer.ScheduleStatus.Next);
     }
