@@ -16,7 +16,7 @@ public class TimeTriggerExample
     }
 
     [Function("TimeTriggerExample")]
-    public async Task Run([TimerTrigger("0 */10 * * * *")] MyInfo myTimer, FunctionContext context)
+    public async Task Run([TimerTrigger("0 */1 * * * *")] MyInfo myTimer, FunctionContext context)
     {
         var utcTime = DateTime.UtcNow;
         var localTime = ToTaipeiTime(utcTime);
@@ -28,12 +28,8 @@ public class TimeTriggerExample
         {
             WriteIndented = true
         };
-        logger.LogInformation("MyInfo: {Serialize}", JsonSerializer.Serialize(myTimer, option));
-        if (context != null)
-        {
-            logger.LogInformation("Function Context: {Serialize}", JsonSerializer.Serialize(context));
-        }
-
+        logger.LogInformation($"MyInfo: {JsonSerializer.Serialize(myTimer, option)}");
+        logger.LogInformation($"Function Context: {JsonSerializer.Serialize(context)}");
         logger.LogInformation("C# Timer trigger function executed at: {LocalTime})", localTime);
         logger.LogInformation("Next timer schedule at: {LocalTime}", ToTaipeiTime(myTimer.ScheduleStatus.Next));
     }
