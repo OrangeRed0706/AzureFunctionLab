@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Net;
+﻿using System.Net;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
 
-namespace lynn_lab;
+namespace lynn_lab.Services;
 
 public static class HttpTriggerExample
 {
