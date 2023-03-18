@@ -10,7 +10,7 @@ public static class HttpTriggerExample
 {
     [Function("HttpTriggerExample")]
     public static HttpResponseData Run(
-        [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "api/HttpTriggerExample")]
+        [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = "api/HttpTriggerExample")]
         HttpRequestData req,
         FunctionContext executionContext)
     {
