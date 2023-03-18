@@ -1,6 +1,5 @@
 ﻿using System.Text.Json;
 using lynn_lab.Helper;
-using lynn_lab.Model;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 
@@ -31,4 +30,20 @@ public class TimeTriggerExample
         logger.LogInformation("Next timer schedule at: {ScheduleStatusNext}",
             myTimer.ScheduleStatus.Next.ToLocalTime());
     }
+}
+
+public class MyInfo
+{
+    public MyScheduleStatus ScheduleStatus { get; set; }
+
+    public bool IsPastDue { get; set; }
+}
+
+public abstract class MyScheduleStatus
+{
+    public DateTime Last { get; set; }
+
+    public DateTime Next { get; set; }
+
+    public DateTime LastUpdated { get; set; }
 }
