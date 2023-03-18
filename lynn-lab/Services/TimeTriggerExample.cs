@@ -16,19 +16,28 @@ public class TimeTriggerExample
     }
 
     [Function("TimeTriggerExample")]
-    public async Task Run([TimerTrigger("0 */1 * * * *")] MyInfo myTimer, FunctionContext context)
+    public async Task Run([TimerTrigger("0 */10 * * * *")] MyInfo myTimer, FunctionContext context)
     {
+        var utcTime = DateTime.UtcNow;
+        var localTime = ToTaipeiTime(utcTime);
         var logger = context.GetLogger("TimeTriggerExample1");
+
         await _lineHelper.SendLineNotify(
-            $"C# Timer trigger function executed at: {DateTime.Now},\n Next timer schedule at: {myTimer.ScheduleStatus.Next}");
+            $"C# Timer trigger function executed at: {localTime},\n Next timer schedule at: {ToTaipeiTime(myTimer.ScheduleStatus.Next)}");
         var option = new JsonSerializerOptions()
         {
             WriteIndented = true
         };
         logger.LogInformation("MyInfo: {Serialize}", JsonSerializer.Serialize(myTimer, option));
         logger.LogInformation("Function Context: {Serialize}", JsonSerializer.Serialize(context));
-        logger.LogInformation("C# Timer trigger function executed at: {LocalTime})", DateTime.Now.ToLocalTime());
-        logger.LogInformation("Next timer schedule at: {LocalTime}", myTimer.ScheduleStatus.Next.ToLocalTime());
+        logger.LogInformation("C# Timer trigger function executed at: {LocalTime})", localTime);
+        logger.LogInformation("Next timer schedule at: {LocalTime}", ToTaipeiTime(myTimer.ScheduleStatus.Next));
+    }
+
+    private DateTime ToTaipeiTime(DateTime time)
+    {
+        var timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById("Taipei Standard Time"); // 指定時區
+        return TimeZoneInfo.ConvertTimeFromUtc(time, timeZoneInfo);
     }
 }
 
