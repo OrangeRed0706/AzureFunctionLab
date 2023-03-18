@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Text.Json;
 using lynn_lab.Helper;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
@@ -20,7 +20,11 @@ public class TimeTriggerExample1
         var logger = context.GetLogger("TimeTriggerExample1");
         _lineHelper.SendLineNotify(
             $"C# Timer trigger function executed at: {DateTime.Now},\n Next timer schedule at: {myTimer.ScheduleStatus.Next}");
-        logger.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
+        logger.LogInformation(JsonSerializer.Serialize(myTimer, new JsonSerializerOptions
+        {
+            WriteIndented = true
+        }));
+        logger.LogInformation($"C# Timer trigger functioean executed at: {DateTime.Now}");
         logger.LogInformation($"Next timer schedule at: {myTimer.ScheduleStatus.Next}");
     }
 }
