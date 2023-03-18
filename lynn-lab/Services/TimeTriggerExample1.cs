@@ -18,7 +18,8 @@ public class TimeTriggerExample1
     public async Task Run([TimerTrigger("0 */1 * * * *")] MyInfo myTimer, FunctionContext context)
     {
         var logger = context.GetLogger("TimeTriggerExample1");
-        _lineHelper.SendLineNotify("Hello");
+        _lineHelper.SendLineNotify(
+            $"C# Timer trigger function executed at: {DateTime.Now},Next timer schedule at: {myTimer.ScheduleStatus.Next}");
         logger.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
         logger.LogInformation($"Next timer schedule at: {myTimer.ScheduleStatus.Next}");
     }
