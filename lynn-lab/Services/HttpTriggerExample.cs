@@ -17,7 +17,7 @@ public class HttpTriggerExample
 
     [Function("HttpTriggerExample")]
     public async Task<HttpResponseData> Run(
-        [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = "api/HttpTriggerExample")]
+        [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "api/HttpTriggerExample")]
         HttpRequestData req,
         FunctionContext executionContext)
     {
