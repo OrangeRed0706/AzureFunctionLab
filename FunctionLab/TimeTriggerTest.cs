@@ -4,12 +4,12 @@ using Microsoft.Extensions.Logging;
 
 namespace Company.FunctionApp1;
 
-public static class Run
+public static class TimeTriggerTest
 {
-    [Function("Run")]
+    [Function("TimeTriggerTest")]
     public static void Run([TimerTrigger("0 */5 * * * *")] MyInfo myTimer, FunctionContext context)
     {
-        var logger = context.GetLogger("Run");
+        var logger = context.GetLogger("TimeTriggerTest");
         logger.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
         logger.LogInformation($"Next timer schedule at: {myTimer.ScheduleStatus.Next}");
         
