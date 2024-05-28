@@ -1,5 +1,4 @@
-using lynn_lab.Helper;
-using lynn_lab.Options;
+using lynn_lab.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -8,8 +7,9 @@ var host = new HostBuilder()
     .ConfigureServices((context, services) =>
     {
         services.AddHttpClient();
-        services.AddSingleton<LineHelper>();
-        services.Configure<LineNotifyOption>(context.Configuration.GetSection("LineNotify"));
+        //services.AddSingleton<LineHelper>();
+        services.AddSingleton<HttpTriggerExample>();
+        //services.Configure<LineNotifyOption>(context.Configuration.GetSection("LineNotify"));
     })
     .Build();
 

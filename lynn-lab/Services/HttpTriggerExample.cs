@@ -9,10 +9,12 @@ namespace lynn_lab.Services;
 public class HttpTriggerExample
 {
     private readonly LineHelper _lineHelper;
+    private readonly IHttpClientFactory _httpClientFactory;
 
-    public HttpTriggerExample(LineHelper lineHelper)
+    public HttpTriggerExample(LineHelper lineHelper,IHttpClientFactory httpClientFactory)
     {
         _lineHelper = lineHelper;
+        _httpClientFactory = httpClientFactory;
     }
 
     [Function("HttpTriggerExample")]
@@ -23,7 +25,6 @@ public class HttpTriggerExample
     {
         var logger = executionContext.GetLogger("HttpTriggerExample");
         logger.LogInformation("C# HTTP trigger function processed a request.");
-        await _lineHelper.SendLineNotify("C# HTTP trigger function processed a request");
         var response = req.CreateResponse(HttpStatusCode.OK);
         response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
 
